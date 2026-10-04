@@ -1,0 +1,56 @@
+{
+  "name": "pi-sticky-header",
+  "version": "0.1.0",
+  "description": "Development tools for the pi-sticky-header project.",
+  "keywords": [
+    "pi"
+  ],
+  "files": [
+    "scripts/install-hooks.mjs"
+  ],
+  "type": "module",
+  "scripts": {
+    "lint": "oxlint --deny-warnings .",
+    "lint:fix": "pnpm lint --fix",
+    "format": "oxfmt .",
+    "format:check": "oxfmt --check .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage --passWithNoTests",
+    "check": "pnpm format:check && pnpm lint && pnpm typecheck && pnpm test:coverage",
+    "hooks:install": "simple-git-hooks",
+    "prepare": "node scripts/install-hooks.mjs",
+    "prepublishOnly": "pnpm check"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "@vitest/coverage-v8": "5.0.3",
+    "lint-staged": "17.6.0",
+    "oxfmt": "0.71.0",
+    "oxlint": "1.86.0",
+    "simple-git-hooks": "2.14.0",
+    "typescript": "^5.9.3",
+    "vite": "^8.3.2",
+    "vitest": "5.0.3"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm exec lint-staged",
+    "pre-push": "pnpm check"
+  },
+  "lint-staged": {
+    "*.{ts,mts,cts}": [
+      "oxlint --deny-warnings",
+      "oxfmt"
+    ],
+    "*.{js,mjs,cjs}": [
+      "oxlint --deny-warnings",
+      "oxfmt"
+    ],
+    "*.{json,jsonc,md,yml,yaml}": "oxfmt"
+  },
+  "engines": {
+    "node": ">=22.19.0"
+  },
+  "packageManager": "pnpm@11.9.0"
+}
