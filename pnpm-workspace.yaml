@@ -2,6 +2,10 @@ packages:
   - .
 autoInstallPeers: false
 minimumReleaseAge: 1440
+minimumReleaseAgeExclude:
+  - "@earendil-works/*"
 allowBuilds:
   esbuild: true
+  "@google/genai": false
+  protobufjs: false
   simple-git-hooks: false

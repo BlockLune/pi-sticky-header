@@ -15,5 +15,5 @@
     "skipLibCheck": true,
     "types": ["node"]
   },
-  "include": ["vitest.config.ts"]
+  "include": ["sticky-header.ts", "src/**/*.ts", "test/**/*.ts", "vitest.config.ts"]
 }
