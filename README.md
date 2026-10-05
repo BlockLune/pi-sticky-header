@@ -1,5 +1,9 @@
 # pi-sticky-header
 
+[![npm](https://img.shields.io/npm/v/pi-sticky-header)](https://www.npmjs.com/package/pi-sticky-header)
+[![CI](https://github.com/BlockLune/pi-sticky-header/actions/workflows/ci.yml/badge.svg)](https://github.com/BlockLune/pi-sticky-header/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
+
 Keep a user prompt at the top of Pi's fullscreen terminal interface.
 The header uses Pi's message colors and shows the message time and navigation arrows.
 You can expand the prompt without a change to the original message in the transcript.
@@ -21,16 +25,16 @@ In this document:
 
 ## Install
 
-Install the extension from GitHub:
-
-```sh
-pi install git:github.com/BlockLune/pi-sticky-header
-```
-
-After the package is published to npm, you can also use this command:
+Install the extension from npm:
 
 ```sh
 pi install npm:pi-sticky-header
+```
+
+To install the latest version from GitHub, use this command:
+
+```sh
+pi install git:github.com/BlockLune/pi-sticky-header
 ```
 
 Start Pi in fullscreen mode.
