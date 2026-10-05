@@ -19,7 +19,24 @@ In this document:
 - **Viewport** means the visible area of the transcript.
 - **Host** means the Pi application that loads this extension.
 
-## Use the extension
+## Install
+
+Install the extension from GitHub:
+
+```sh
+pi install git:github.com/BlockLune/pi-sticky-header
+```
+
+After the package is published to npm, you can also use this command:
+
+```sh
+pi install npm:pi-sticky-header
+```
+
+Start Pi in fullscreen mode.
+The header appears when you send a prompt.
+
+## Use a local copy
 
 Install the development dependencies:
 
@@ -160,7 +177,6 @@ No bundler or `dist/` directory is necessary.
 
 Host packages appear in `peerDependencies` and `devDependencies`, not in `dependencies`.
 This prevents a second runtime copy of Pi.
-Before publication, select the package name, version, and license.
 
 ```text
 sticky-header.ts     Extension setup, commands, shortcuts, and cleanup
@@ -222,3 +238,7 @@ During cleanup, this extension does not replace a root layout that another exten
 
 Automated tests use Pi's real message components, ScrollView, and layout engine.
 Also test mouse input, colors, and scrolling in your terminal.
+
+## License
+
+[MIT](LICENSE)

@@ -8,10 +8,21 @@
     "pi-package",
     "sticky-header"
   ],
+  "homepage": "https://github.com/BlockLune/pi-sticky-header#readme",
+  "bugs": {
+    "url": "https://github.com/BlockLune/pi-sticky-header/issues"
+  },
+  "license": "MIT",
+  "author": "BlockLune",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BlockLune/pi-sticky-header.git"
+  },
   "files": [
     "sticky-header.ts",
     "src",
     "README.md",
+    "LICENSE",
     "scripts/install-hooks.mjs"
   ],
   "type": "module",
