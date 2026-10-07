@@ -7,6 +7,7 @@ import type {
   TerminalInputHandler,
 } from "@earendil-works/pi-coding-agent";
 import {
+  matchesKey,
   TuiAltScreen,
   TuiMainScreen,
   VStack,
@@ -77,7 +78,8 @@ function harness(mode: ExtensionContext["mode"] = "tui", regular = false) {
           plainTheme as unknown as ExtensionUIContext["theme"],
           {
             matches: (data: string, action: string) =>
-              data === "configured-expand" && action === "app.tools.expand",
+              action === "app.tools.expand" &&
+              (data === "configured-expand" || matchesKey(data, "ctrl+o")),
           } as Parameters<typeof factory>[2],
           () => {
             completed = true;
@@ -201,12 +203,16 @@ describe("extension lifecycle with native layout", () => {
     await h.emit("session_shutdown");
   });
 
-  test("uses the configured shortcut only when the header is enabled", async () => {
+  test("handles only the configured shortcut press without consuming it", async () => {
     const h = harness();
     await h.emit("session_start");
     h.frame();
     expect(h.input("unrelated")).toBeUndefined();
-    expect(h.input("configured-expand")).toEqual({ consume: true });
+    expect(h.input("\x1b[111;5u")).toBeUndefined();
+    expect(h.frame().lines[2]).toContain("second line");
+    expect(h.input("\x1b[111;5:2u")).toBeUndefined();
+    expect(h.frame().lines[2]).toContain("second line");
+    expect(h.input("\x1b[111;5:3u")).toBeUndefined();
     expect(h.frame().lines[2]).toContain("second line");
     await h.command("toggle");
     expect(h.input("configured-expand")).toBeUndefined();

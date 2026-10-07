@@ -1,5 +1,5 @@
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
-import { VStack } from "@earendil-works/pi-tui";
+import { isKeyRelease, isKeyRepeat, VStack } from "@earendil-works/pi-tui";
 import { getFullscreenHost } from "./src/fullscreen.ts";
 import { StickyHeader, type StickyConfig } from "./src/header.ts";
 
@@ -44,12 +44,14 @@ export default function stickyHeaderExtension(pi: ExtensionAPI): void {
           layout.setLayoutRoot(root);
           const unsubscribe = ctx.ui.onTerminalInput((data) => {
             if (
+              !isKeyRelease(data) &&
+              !isKeyRepeat(data) &&
               config.enabled &&
               header?.getActivePrompt() &&
               keybindings.matches(data, "app.tools.expand")
             ) {
               header.toggleExpanded();
-              return { consume: true };
+              // Let Pi also handle app.tools.expand for its native tool output.
             }
             return undefined;
           });

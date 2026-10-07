@@ -1,6 +1,6 @@
 {
   "name": "pi-sticky-header",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A sticky user-prompt header for Pi's fullscreen terminal UI.",
   "keywords": [
     "extension",
@@ -27,7 +27,7 @@
   ],
   "type": "module",
   "scripts": {
-    "dev": "pi -e ./sticky-header.ts",
+    "dev": "pi --no-extensions -e ./sticky-header.ts",
     "lint": "oxlint --deny-warnings .",
     "lint:fix": "pnpm lint --fix",
     "format": "oxfmt .",

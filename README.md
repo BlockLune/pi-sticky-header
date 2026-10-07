@@ -54,10 +54,13 @@ Start Pi with the local extension:
 pnpm dev
 ```
 
+This command disables extension discovery for the run and loads only the local copy.
+This prevents a separately installed copy of `pi-sticky-header` from loading at the same time.
+
 To load the extension for one run, use this command:
 
 ```sh
-pi -e ./sticky-header.ts
+pi --no-extensions -e ./sticky-header.ts
 ```
 
 To install the local directory as a Pi package, use this command:
@@ -70,7 +73,7 @@ Pi uses fullscreen mode by default.
 To select this mode explicitly, use this command:
 
 ```sh
-pi --tui-mode fullscreen -e ./sticky-header.ts
+pi --tui-mode fullscreen --no-extensions -e ./sticky-header.ts
 ```
 
 The extension does not change the layout in regular, print, JSON, or RPC mode.
